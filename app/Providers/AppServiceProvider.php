@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Musicshop\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
