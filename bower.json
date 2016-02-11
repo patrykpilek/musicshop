@@ -1,0 +1,25 @@
+{
+  "name": "musicshop",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Patryk Pilek <patryk.pilek@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/patrykpilek/musicshop",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "bootstrap-sass": "bootstrap-sass-official#^3.3.6",
+    "font-awesome": "^4.5.0"
+  }
+}
