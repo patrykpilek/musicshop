@@ -11,11 +11,15 @@
 |
 */
 
-$factory->define(Musicshop\User::class, function (Faker\Generator $faker) {
+$factory->define(Musicshop\User::class, function() {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => bcrypt(str_random(10)),
+        'username' => "patrykpilek",
+        'email' => "patryk.pilek@gmail.com",
+        'password' => bcrypt("lukasz90"),
+        'first_name' => "Patryk",
+        'last_name' => "Pilek",
+        'address' => "1 Tower Grove, LEEDS, LS12 3SF",
+        'is_admin' => true,
         'remember_token' => str_random(10),
     ];
 });

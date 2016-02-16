@@ -7824,51 +7824,23 @@ button.close {
 .fa-percent:before {
   content: ""; }
 
+html, body {
+  overflow-x: hidden;
+  /* Prevent scroll on narrow devices */ }
+
 body {
-  padding-bottom: 40px;
+  padding-top: 90px;
   color: #5a5a5a; }
 
-.navbar-wrapper {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 20; }
+.musicshop-footer {
+  padding: 40px 0;
+  color: #999;
+  text-align: center;
+  background-color: #222222;
+  border-top: 1px solid #e5e5e5; }
 
-/* Flip around the padding for proper display in narrow viewports */
-.navbar-wrapper > .container {
-  padding-right: 0;
-  padding-left: 0; }
-
-.navbar-wrapper .navbar {
-  padding-right: 15px;
-  padding-left: 15px; }
-
-.navbar-wrapper .navbar .container {
-  width: auto; }
-
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
-/* Carousel base class */
-.carousel {
-  height: 500px;
-  margin-bottom: 60px; }
-
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-  z-index: 10; }
-
-/* Declare heights because of positioning of img element */
-.carousel .item {
-  height: 500px;
-  background-color: #777; }
-
-.carousel-inner > .item > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  height: 500px; }
+.musicshop-footer p:last-child {
+  margin-bottom: 0; }
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
