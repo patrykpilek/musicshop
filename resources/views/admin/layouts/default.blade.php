@@ -18,10 +18,22 @@
     <![endif]-->
 </head>
 <body>
+    @include('admin.layouts.partials.navigation')
 
-    @yield('content')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                @include('admin.layouts.partials.sidebar')
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                @yield('content')
+            </div>
+        </div>
+    </div>
 
-<script src="{{ asset('js/admin_musicshop.js') }}"></script>
+    <script src="{{ asset('js/admin_musicshop.js') }}"></script>
+
+    @yield('scripts')
 
 </body>
 </html>

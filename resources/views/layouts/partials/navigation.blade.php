@@ -43,7 +43,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             @if (Auth::user()->is_admin == true)
-                                <li><a href="{!! URL::to('/dashboard') !!}"><i class="fa fa-tachometer"></i> Admin Dashboard</a></li>
+                                <li><a href="{!! URL::to('/admin/dashboard') !!}"><i class="fa fa-tachometer"></i> Admin Dashboard</a></li>
                             @endif
                             <li><a href="{!! url('/user') !!}"><i class="fa fa-user"></i> Your Account</a></li>
                             <li role="separator" class="divider"></li>

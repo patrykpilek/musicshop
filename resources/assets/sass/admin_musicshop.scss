@@ -4,6 +4,8 @@
 @import "bootstrap/stylesheets/bootstrap/_variables";
 // import font-awesome
 @import "fontawesome/font-awesome";
+// import datatables-plugins
+@import "datatablesplugins/dataTables.bootstrap.scss";
 
 /*
  * Base structure
@@ -13,7 +15,6 @@
 body {
   padding-top: 50px;
 }
-
 
 /*
  * Global add-ons

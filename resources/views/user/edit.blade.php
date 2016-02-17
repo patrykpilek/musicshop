@@ -11,21 +11,11 @@
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                            {{--<div class="col-lg-8">--}}
-                                {{--<div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">--}}
-                                    {{--<label for="username" class="control-label">User Name</label>--}}
-                                    {{--<input type="text" name="username" class="form-control" id="username" value="{{ Request::old('username') ?: $user->username }}">--}}
-                                    {{--@if($errors->has('username'))--}}
-                                        {{--<span class="hel-block">{{ $errors->first('username') }}</span>--}}
-                                    {{--@endif--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Username</label>
+                                <label for="username" class="col-md-4 control-label">Username</label>
 
                                 <div class="col-md-6">
-                                    <input type="username" class="form-control" name="username" value="{{ Request::old('username') ?: $user->username }}">
+                                    <input type="text" id="username" class="form-control" name="username" value="{{ Request::old('username') ?: $user->username }}">
 
                                     @if ($errors->has('username'))
                                         <span class="help-block">
@@ -36,10 +26,10 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">User Email</label>
+                                <label for="email" class="col-md-4 control-label">User Email</label>
 
                                 <div class="col-md-6">
-                                    <input type="email" class="form-control" name="email" value="{{ Request::old('email') ?: $user->email }}">
+                                    <input type="email" id="email" class="form-control" name="email" value="{{ Request::old('email') ?: $user->email }}">
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -50,10 +40,10 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">First Name</label>
+                                <label for="first_name" class="col-md-4 control-label">First Name</label>
 
                                 <div class="col-md-6">
-                                    <input type="first_name" class="form-control" name="first_name" value="{{ Request::old('first_name') ?: $user->first_name }}">
+                                    <input type="text" id="first_name" class="form-control" name="first_name" value="{{ Request::old('first_name') ?: $user->first_name }}">
 
                                     @if ($errors->has('first_name'))
                                         <span class="help-block">
@@ -64,10 +54,10 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Last Name</label>
+                                <label for="last_name" class="col-md-4 control-label">Last Name</label>
 
                                 <div class="col-md-6">
-                                    <input type="last_name" class="form-control" name="last_name" value="{{ Request::old('last_name') ?: $user->last_name }}">
+                                    <input type="text" id="last_name" class="form-control" name="last_name" value="{{ Request::old('last_name') ?: $user->last_name }}">
 
                                     @if ($errors->has('last_name'))
                                         <span class="help-block">
