@@ -54,11 +54,48 @@
                                        class="btn btn-info btn-xs">
                                         <i class="fa fa-edit"></i> Edit
                                     </a>
+                                    <a type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmDelete"
+                                       data-user_id="{{ $user->id }}"
+                                       data-user_first="{{ $user->first_name }}"
+                                       data-user_last="{{ $user->last_name }}">
+                                        <i class="fa fa-times-circle"></i> Delete
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    {{-- Confirm Modal Delete --}}
+    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Please Confirm</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="lead">
+                        <i class="fa fa-question-circle fa-lg"></i> &nbsp;
+                        Are you sure you want to delete this user:
+                        </br><span id="userNumber"></span> ?
+                    </p>
+                </div>
+                <div class="modal-footer">
+
+                    <form id="delForm" method="POST">
+                        {!! csrf_field() !!}
+                        {!! method_field('DELETE') !!}
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-btn fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -68,10 +105,17 @@
     <script>
         $(function() {
             $("#users-table").DataTable({
-                createdRow: function ( row ) {
-                    $('td', row).attr('tabindex', 0);
-                }
+
             });
+
+            $('#confirmDelete').on('show.bs.modal', function (event) {
+                var userId = $(event.relatedTarget).data('user_id');
+                var userFirst = $(event.relatedTarget).data('user_first');
+                var userLast = $(event.relatedTarget).data('user_last');
+
+                $('#userNumber').text('( id ' + userId + ' - ' + userFirst + ' ' + userLast + ' )');
+                $('#delForm').attr('action', '/admin/users/' + userId);
+            })
         });
     </script>
 @stop
