@@ -1,5 +1,5 @@
 <ul class="nav nav-sidebar">
-    <li class="{{ (Request::is('admin/dashboard') ? 'active' : '') }}"><a href="{{ url('/admin/dashboard') }}"><span class="glyphicon glyphicon-dashboard"></span> Overview</a></li>
+    <li class="{{ (Request::is('admin/dashboard') ? 'active' : '') }}"><a href="{{ url('/admin/dashboard') }}"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
     <li class="{{ (Request::is('admin/users') ? 'active' : '') }}"><a href="{{ url('/admin/users') }}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
     <li class="{{ (Request::is('admin/albums') ? 'active' : '') }}"><a href="{{ url('/admin/albums') }}"><span class="glyphicon glyphicon-music"></span> Albums</a></li>
 </ul>

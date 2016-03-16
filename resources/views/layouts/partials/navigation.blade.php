@@ -36,9 +36,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             @if( Auth::user()->first_name == null)
-                                {{ Auth::user()->username }} <span class="caret"></span>
+                                Hello, {{ Auth::user()->username }} <span class="caret"></span>
                             @else
-                                {{ Auth::user()->first_name }} <span class="caret"></span>
+                                Hello, {{ Auth::user()->first_name }} <span class="caret"></span>
                             @endif
                         </a>
                         <ul class="dropdown-menu" role="menu">

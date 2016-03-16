@@ -7,12 +7,11 @@ Route::group(['middleware' => 'web', 'admin'], function () {
         return view('home.index');
     });
 
-    Route::resource('user', 'UserController');
+    Route::resource('/user', 'UserController');
     Route::get('/home', 'HomeController@index');
 
-    Route::get('/admin/dashboard', function(){
-        return view('admin.overview.index');
-    });
-
+    Route::get('/admin', 'Admin\DashboardController@index');
+    Route::resource('/admin/dashboard','Admin\DashboardController');
     Route::resource('/admin/users','Admin\UsersController', ['except' => 'show']);
+    Route::resource('/admin/albums','Admin\AlbumsController');
 });
