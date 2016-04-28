@@ -7832,6 +7832,16 @@ body {
   padding-top: 90px;
   color: #5a5a5a; }
 
+.navbar-brand {
+  font-weight: 700;
+  font-size: 24px; }
+
+.profile-image {
+  position: relative;
+  top: -5px;
+  float: right;
+  left: 10px; }
+
 .musicshop-footer {
   padding: 40px 0;
   color: #999;
