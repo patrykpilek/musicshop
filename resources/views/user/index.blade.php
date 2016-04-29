@@ -2,37 +2,65 @@
 
 @section('content')
     <div class="container">
+        <div class="page-header">
+            <h1>Your Account</h1>
+        </div>
+        <br>
         <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><h2><strong>Your Account</strong></h2></div>
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Profile</h3>
+                    </div>
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <h3>Your Details</h3>
-                                <dl class="dl-horizontal">
-                                    <dt>User Name</dt>
-                                    <dd>{{ Auth::user()->username }}</dd>
-                                    <dt>User Email</dt>
-                                    <dd>{{ Auth::user()->email}}</dd>
-                                    <dt>First Name</dt>
-                                    <dd>{{ Auth::user()->first_name }}</dd>
-                                    <dt>Last Name</dt>
-                                    <dd>{{ Auth::user()->last_name }}</dd>
-                                </dl>
-                                <p><a class="btn btn-default" href="/user/{{ Auth::user()->id }}/edit" role="button">Edit Your Details &raquo;</a></p>
-                            </div>
-                            <div class="col-lg-4">
-                                <h3>Your Address</h3>
-                                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                                <p><a class="btn btn-default" href="#" role="button">Edit Your Addresses &raquo;</a></p>
-                            </div>
-                            <div class="col-lg-4">
-                                <h3>Your Orders</h3>
-                                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-                                <p><a class="btn btn-default" href="#" role="button">View Your Orders &raquo;</a></p>
-                            </div>
-                        </div>
+                        <p>Edit your name, email address</p><br>
+                        <p class="text-center"><a class="btn btn-primary" href="/user/{{ Auth::user()->id }}/edit" role="button">Edit Your Details &raquo;</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Security</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Update password</p><br>
+                        <p class="text-center"><a class="btn btn-primary" href="" role="button">Change password &raquo;</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <hr>
+            </div>
+            <div class="col-md-6">
+                <hr>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Your Addresses</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Edit address</p><br>
+                        <p class="text-center"><a class="btn btn-primary" href="#" role="button">Edit Your Address&raquo;</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Your Orders</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>View your orders</p><br>
+                        <p class="text-center"><a class="btn btn-primary" href="#" role="button">View Your Orders &raquo;</a></p>
                     </div>
                 </div>
             </div>
