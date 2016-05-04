@@ -37,7 +37,11 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-expanded="true">
                             {{ Auth::user()->getNameOrUsername() }}
                             <span class="caret"></span>
-                            <img class="profile-image img-circle" src="{{ Auth::user()->getAvatar() }}" >
+                            @if(Storage::disk('local')->has(Auth::user()->id .'-image.jpg'))
+                                <img class="profile-image img-circle" src="{{ url('user/image/'. Auth::user()->id .'-image.jpg') }}" >
+                            @else
+                                <img class="profile-image img-circle" src="{{ Auth::user()->getAvatar() }}" >
+                            @endif
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             @if (Auth::user()->is_admin == true)

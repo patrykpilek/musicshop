@@ -3,13 +3,14 @@
 namespace Musicshop;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
     protected $table = 'users';
 
     protected $fillable = [
-        'username', 'email', 'password', 'first_name', 'last_name', 'address',
+        'username', 'email', 'password', 'first_name', 'last_name', 'address', 'avatar',
     ];
 
     protected $hidden = [

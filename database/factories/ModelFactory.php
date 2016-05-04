@@ -13,12 +13,13 @@
 
 $factory->define(Musicshop\User::class, function() {
     return [
-        'username' => "patrykpilek",
-        'email' => "patryk.pilek@gmail.com",
-        'password' => bcrypt("lukasz90"),
-        'first_name' => "Patryk",
-        'last_name' => "Pilek",
-        'address' => "1 Tower Grove, LEEDS, LS12 3SF",
+        'username' => "admin",
+        'email' => "admin@gmail.com",
+        'password' => bcrypt("admin"),
+        'first_name' => "admin",
+        'last_name' => "admin",
+        'address' => "",
+        'avatar' => "",
         'is_admin' => true,
         'remember_token' => str_random(10),
     ];

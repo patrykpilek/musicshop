@@ -2,12 +2,51 @@
 
 @section('content')
     <div class="container">
+        <div class="page-header">
+            <h1>Your Details</h1>
+        </div>
+        <small>
+            <ins><a href="{{ url('/home') }}">Home</a></ins>&nbsp;
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>&nbsp;
+            <ins><a href="{{ url('/user') }}">Your Account</a></ins>&nbsp;
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><strong>Your Details</strong>
+        </small>
+        <hr>
         <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><h2><strong>Update your profile</strong></h2></div>
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Profile Photo</h3>
+                    </div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="post" action="/user/{{ $user->id }}">
+                        <p class="text-center">
+                            @if(Storage::disk('local')->has($user->id .'-image.jpg'))
+                                <img class="img-thumbnail" src="{{ url('user/image/'. $user->id .'-image.jpg') }}" >
+                                {{--<img class="img-thumbnail" src="{{ route('user.image', ['id' => $user->id .'-image.jpg' ]) }}" >--}}
+                            @else
+                                <img class="img-thumbnail" src="{{ Auth::user()->getAvatar() }}" >
+                            @endif
+
+                        </p>
+                        <p class="text-center">
+                            <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modal-file-upload">
+                                <i class="fa fa-upload"></i> Select new photo
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Update your profile</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        @include('layouts.partials.errors')
+                        @include('layouts.partials.success')
+
+                        <form class="form-horizontal" role="form" method="post" action="/user/edit/{{ $user->id }}">
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -19,8 +58,8 @@
 
                                     @if ($errors->has('username'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('username') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -33,8 +72,8 @@
 
                                     @if ($errors->has('email'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -47,8 +86,8 @@
 
                                     @if ($errors->has('first_name'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('first_name') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -61,52 +100,58 @@
 
                                     @if ($errors->has('last_name'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Password</label>
-
-                                <div class="col-md-6">
-                                    <input type="password" class="form-control" name="password">
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Confirm Password</label>
-
-                                <div class="col-md-6">
-                                    <input type="password" class="form-control" name="password_confirmation">
-
-                                    @if ($errors->has('password_confirmation'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('last_name') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-6">
+                                <div class="col-md-6 col-md-offset-5">
                                     <button type="submit" class="btn btn-primary btn-md">
                                         <i class="fa fa-save"></i>
                                         &nbsp; Save Changes
                                     </button>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Upload File Modal --}}
+    <div class="modal fade" id="modal-file-upload">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="/user/uploadAvatar/{{ $user->id }}" class="form-horizontal" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">Upload New File</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="image" class="col-sm-3 control-label">
+                                File
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="file" id="file_name" name="file_name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Upload File
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
