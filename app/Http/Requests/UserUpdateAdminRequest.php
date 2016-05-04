@@ -29,7 +29,6 @@ class UserUpdateAdminRequest extends Request
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'address' => 'required|max:255',
-            'password' => 'required|confirmed|min:6',
         ];
     }
 }
