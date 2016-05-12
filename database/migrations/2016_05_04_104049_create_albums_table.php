@@ -16,7 +16,11 @@ class CreateAlbumsTable extends Migration
             $table->increments('id');
             $table->integer('artist_id')->index();
             $table->string('album_name');
-            $table->string('description');
+            $table->text('description');
+            $table->decimal('price', 5, 2);
+            $table->string('format');
+            $table->string('category');
+            $table->string('image');
             $table->timestamps();
         });
     }
