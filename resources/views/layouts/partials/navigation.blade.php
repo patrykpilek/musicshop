@@ -7,24 +7,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{!! url('/') !!}">Music Shop</a>
+            <a class="navbar-brand" href="{!! url('/home') !!}">Music Shop</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <!-- Left Side of Navbar -->
             <ul class="nav navbar-nav">
-                <li class="{{ (Request::is('home') ? 'active' : '') }}"><a href="{!! url('/home') !!}">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true">Music<span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li class="dropdown-header">All Music</li>
+                        <li role="separator" class="divider"></li>
                         <li><a href="#">CD</a></li>
                         <li><a href="#">Vinyl</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Link One</a></li>
-                        <li><a href="#">Link Two</a></li>
                     </ul>
                 </li>
-                <li><a href="{!! url('/contact') !!}">Contact</a></li>
+                <li class="{{ (Request::is('contact') ? 'active' : '') }}"><a href="{!! url('/contact') !!}">Contact</a></li>
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">

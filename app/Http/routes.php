@@ -1,14 +1,18 @@
 <?php
 
+Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
+Route::get('/home/albumImage/{filename}', 'HomeController@getAlbumImage');
+Route::get('/home/show/{id}', 'HomeController@show');
+
 Route::group(['middleware' => 'web', 'admin'], function () {
     Route::auth();
 
-    Route::get('/', function () {
-        return view('home.index');
-    });
-
+    Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
-    
+    Route::get('/home/albumImage/{filename}', 'HomeController@getAlbumImage');
+    Route::get('/home/show/{id}', 'HomeController@show');
+
     Route::get('/user', 'UserController@index');
     Route::get('/user/edit/{id}', 'UserController@edit');
     Route::put('/user/edit/{id}', 'UserController@update');
