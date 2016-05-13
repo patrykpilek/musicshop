@@ -4,7 +4,7 @@ namespace Musicshop\Http\Requests;
 
 use Musicshop\Http\Requests\Request;
 
-class UserUpdateAdminRequest extends Request
+class AlbumImageRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,7 @@ class UserUpdateAdminRequest extends Request
     public function rules()
     {
         return [
-            'username' => 'required|max:255',
-            'email' => 'required|email|max:255',
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'address' => 'required|max:255',
+            'album_image_name' => 'required',
         ];
     }
 }

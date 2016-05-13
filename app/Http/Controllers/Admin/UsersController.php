@@ -3,6 +3,7 @@
 namespace Musicshop\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Musicshop\Http\Requests;
 use Musicshop\Http\Controllers\Controller;
 use Musicshop\Http\Requests\UserCreateAdminRequest;
@@ -58,7 +59,7 @@ class UsersController extends Controller
             'password' => bcrypt($request->get('password')),
         ));
         $user->save();
-        return redirect('/admin/users');
+        return redirect('/admin/users')->withSuccess("New User '$user->username' has been created.");
     }
 
     /**
@@ -69,7 +70,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -105,7 +107,7 @@ class UsersController extends Controller
             'password' => bcrypt($request->get('password')),
         ]);
 
-        return redirect("/admin/users");
+        return redirect("/admin/users/{$user->id}/edit")->withSuccess("Your changes has been saved.");
     }
 
     /**
@@ -117,8 +119,11 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        if(Storage::disk('local')->has($user->id . '-image.jpg')){
+            Storage::disk('local')->delete($user->id . '-image.jpg');
+        }
         $user->delete();
-        return redirect('/admin/users');
+        return redirect('/admin/users')->withSuccess("User '$user->username' has been deleted.");
     }
 
 }

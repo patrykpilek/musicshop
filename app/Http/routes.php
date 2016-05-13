@@ -22,6 +22,9 @@ Route::group(['middleware' => 'web', 'admin'], function () {
 
     Route::get('/admin', 'Admin\DashboardController@index');
     Route::resource('/admin/dashboard','Admin\DashboardController');
-    Route::resource('/admin/users','Admin\UsersController', ['except' => 'show']);
+    Route::resource('/admin/users','Admin\UsersController');
     Route::resource('/admin/albums','Admin\AlbumsController');
+    Route::post('/admin/albums/uploadImage/{id}', 'Admin\AlbumsController@uploadAlbumImage');
+    Route::get('/admin/albums/image/{filename}', 'Admin\AlbumsController@getAlbumImage');
+    Route::put('/admin/albums/description/{id}', 'Admin\AlbumsController@updateDescription');
 });

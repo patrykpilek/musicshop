@@ -16,6 +16,7 @@
         </div>
 
         <div class="row">
+            @include('layouts.partials.success')
             <div class="col-sm-12">
                 <table id="users-table" class="table table-striped table-bordered">
                     <thead>
@@ -26,9 +27,6 @@
                             <th class="hidden-md">First Name</th>
                             <th class="hidden-md">Last Name</th>
                             <th class="hidden-md">Address</th>
-                            <th class="hidden-md">Is Admin</th>
-                            <th class="hidden-md">Created At</th>
-                            <th class="hidden-md">Updated At</th>
                             <th data-sortable="false">Actions</th>
                         </tr>
                     </thead>
@@ -41,17 +39,13 @@
                                 <td class="hidden-md">{{ $user->first_name }}</td>
                                 <td class="hidden-md">{{ $user->last_name }}</td>
                                 <td class="hidden-md">{{ $user->address }}</td>
-                                <td class="hidden-md">
-                                    @if( $user->is_admin == 1)
-                                        true
-                                    @else
-                                        false
-                                    @endif
-                                <td class="hidden-md">{{ $user->created_at }}</td>
-                                <td class="hidden-md">{{ $user->updated_at }}</td>
                                 <td>
-                                    <a href="/admin/users/{{ $user->id }}/edit"
+                                    <a href="/admin/users/{{ $user->id }}"
                                        class="btn btn-info btn-xs">
+                                        <i class="fa fa-eye"></i> Show
+                                    </a>
+                                    <a href="/admin/users/{{ $user->id }}/edit"
+                                       class="btn btn-primary btn-xs">
                                         <i class="fa fa-edit"></i> Edit
                                     </a>
                                     <a type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmDelete"

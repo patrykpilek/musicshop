@@ -24,3 +24,25 @@ $factory->define(Musicshop\User::class, function() {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Musicshop\Artist::class, function() {
+    return [
+        'artist_name' => "",
+    ];
+});
+
+$factory->define(Musicshop\Album::class, function() {
+    return [
+        'artist_id' => '',
+        'album_name' => "",
+        'description' => "",
+    ];
+});
+
+$factory->define(Musicshop\Track::class, function($faker) {
+    return [
+        'artist_id' => '',
+        'album_id' => '',
+        'track_name' => $faker->name,
+    ];
+});
