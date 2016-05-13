@@ -7,6 +7,8 @@ Route::get('/home/show/{id}', 'HomeController@show');
 Route::get('/search', 'SearchAlbumController@getAlbumResults');
 Route::get('/searchCD', 'SearchAlbumController@getCDResults');
 Route::get('/searchVinyl', 'SearchAlbumController@getVinylResults');
+Route::get('/contact', 'ContactController@index');
+Route::post('/contact', 'ContactController@sendContactInfo');
 
 Route::group(['middleware' => 'web', 'admin'], function () {
     Route::auth();
@@ -18,6 +20,8 @@ Route::group(['middleware' => 'web', 'admin'], function () {
     Route::get('/search', 'SearchAlbumController@getAlbumResults');
     Route::get('/searchCD', 'SearchAlbumController@getCDResults');
     Route::get('/searchVinyl', 'SearchAlbumController@getVinylResults');
+    Route::get('/contact', 'ContactController@index');
+    Route::post('/contact', 'ContactController@sendContactInfo');
 
     Route::get('/user', 'UserController@index');
     Route::get('/user/edit/{id}', 'UserController@edit');
