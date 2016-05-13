@@ -11,18 +11,25 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <!-- Left Side of Navbar -->
+
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true">Music<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-header">All Music</li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">CD</a></li>
-                        <li><a href="#">Vinyl</a></li>
+                        <li><a href="{{ url('/searchCD') }}">CD</a></li>
+                        <li><a href="{{ url('searchVinyl') }}">Vinyl</a></li>
                     </ul>
                 </li>
                 <li class="{{ (Request::is('contact') ? 'active' : '') }}"><a href="{!! url('/contact') !!}">Contact</a></li>
             </ul>
+            <form class="navbar-form navbar-left" role="search" action="{{ url('/search') }}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="query" placeholder="Search Album">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->

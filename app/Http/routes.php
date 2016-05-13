@@ -4,6 +4,9 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 Route::get('/home/albumImage/{filename}', 'HomeController@getAlbumImage');
 Route::get('/home/show/{id}', 'HomeController@show');
+Route::get('/search', 'SearchAlbumController@getAlbumResults');
+Route::get('/searchCD', 'SearchAlbumController@getCDResults');
+Route::get('/searchVinyl', 'SearchAlbumController@getVinylResults');
 
 Route::group(['middleware' => 'web', 'admin'], function () {
     Route::auth();
@@ -12,6 +15,9 @@ Route::group(['middleware' => 'web', 'admin'], function () {
     Route::get('/home', 'HomeController@index');
     Route::get('/home/albumImage/{filename}', 'HomeController@getAlbumImage');
     Route::get('/home/show/{id}', 'HomeController@show');
+    Route::get('/search', 'SearchAlbumController@getAlbumResults');
+    Route::get('/searchCD', 'SearchAlbumController@getCDResults');
+    Route::get('/searchVinyl', 'SearchAlbumController@getVinylResults');
 
     Route::get('/user', 'UserController@index');
     Route::get('/user/edit/{id}', 'UserController@edit');
