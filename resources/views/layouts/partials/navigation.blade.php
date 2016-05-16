@@ -34,9 +34,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
+                    <li class="{{ (Request::is('basket') ? 'active' : '')  }}"><a href="{{ url('/basket') }}"><span class="fa fa-shopping-cart"></span> Basket ( {{  Cart::count() }} items)</a></li>
                     <li class="{{ (Request::is('register') ? 'active' : '') }}"><a href="{{ url('/register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                     <li class="{{ (Request::is('login') ? 'active' : '') }}"><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 @else
+                    <li class="{{ (Request::is('basket') ? 'active' : '')  }}"><a href="{{ url('/basket') }}"><span class="fa fa-shopping-cart"></span> Basket ( {{  Cart::count() }} items)</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-expanded="true">
                             {{ Auth::user()->getNameOrUsername() }}
