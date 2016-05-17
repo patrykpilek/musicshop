@@ -14,7 +14,7 @@
                             <th>Price</th>
                             <th>Qty</th>
                             <th>Total</th>
-                            <th>Action</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -68,19 +68,16 @@
                     </div>
                     <div class="panel-body">
                         <div class="page-header">
-                            <h1><small>Total: </small>£
-                                @if ($basket->count())
-                                    {{Cart::total()}}
-                                @else
-                                    0
-                                @endif
-
-                            </h1>
+                            <h1><small>Total: </small>&pound;{{ Cart::total() }}</h1>
                         </div>
-                        <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ url('/basket/clear') }}">Clear Basket</a>
+                        <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ url("/basket?basket=clear") }}">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Clear Basket
+                        </a>
                         <br>
                         <p class="text-center">or</p>
-                        <a class="btn btn-primary btn-lg btn-block" type="button" href="">Pay by cash</a>
+                        <a class="btn btn-primary btn-lg btn-block" type="button" href="">
+                            Pay&nbsp;<i class="fa fa-cc-visa" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
             </div>

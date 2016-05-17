@@ -11,14 +11,12 @@ Route::get('/contact', 'ContactController@index');
 Route::post('/contact', 'ContactController@sendContactInfo');
 Route::post('/basket', 'BasketController@basket');
 Route::get('/basket', 'BasketController@basket');
-Route::get('/basket/clear', 'BasketController@clear');
 
 Route::group(['middleware' => 'web', 'admin'], function () {
     Route::auth();
 
     Route::post('/basket', 'BasketController@basket');
     Route::get('/basket', 'BasketController@basket');
-    Route::get('/basket/clear', 'BasketController@clear');
 
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
