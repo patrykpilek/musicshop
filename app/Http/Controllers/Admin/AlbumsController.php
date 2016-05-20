@@ -61,7 +61,7 @@ class AlbumsController extends Controller
             ->where('artist_name', '=', $artistName)
             ->first();
 
-        if($checkArtist->artist_name == $artistName){
+        if($checkArtist){
             $album->artist_id = $checkArtist->id;
             $album->album_name = $request->get('album');
             $album->description = $request->get('description');
