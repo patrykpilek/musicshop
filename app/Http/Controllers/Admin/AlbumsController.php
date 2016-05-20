@@ -238,9 +238,23 @@ class AlbumsController extends Controller
         return redirect("/admin/albums/{$album->id}/edit")->withSuccess("Your changes has been saved.");
     }
 
-    public function destroy()
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id)
     {
-        //
+        $album = Album::findOrFail($id);
+
+        DB::table('tracks')->where('album_id', '=', $album->id)->delete();
+
+        if(Storage::disk('album')->has($album->id . '-album-image.jpg')){
+            Storage::disk('album')->delete($album->id . '-album-image.jpg');
+        }
+
+        $album->delete();
+
+        return redirect('/admin/albums')->withSuccess("Album '$album->album_name' has been deleted.");
     }
 
     /**

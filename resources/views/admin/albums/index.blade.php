@@ -50,9 +50,8 @@
                                     <i class="fa fa-edit"></i> Edit
                                 </a>
                                 <a type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#confirmDelete"
-                                   data-user_id="{{ $album->id }}"
-                                   data-user_first="{{ $album->album_name }}"
-                                   data-user_last="{{ $album->artist_name }}">
+                                   data-album_id="{{ $album->id }}"
+                                   data-album_name="{{ $album->album_name }}">
                                     <i class="fa fa-times-circle"></i> Delete
                                 </a>
                             </td>
@@ -75,8 +74,8 @@
                 <div class="modal-body">
                     <p class="lead">
                         <i class="fa fa-question-circle fa-lg"></i> &nbsp;
-                        Are you sure you want to delete this user:
-                        </br><span id="userNumber"></span> ?
+                        Are you sure you want to delete this album:
+                        </br><span id="albumName"></span> ?
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -103,12 +102,11 @@
             $("#users-table").DataTable();
 
             $('#confirmDelete').on('show.bs.modal', function (event) {
-                var userId = $(event.relatedTarget).data('user_id');
-                var userFirst = $(event.relatedTarget).data('user_first');
-                var userLast = $(event.relatedTarget).data('user_last');
+                var albumId = $(event.relatedTarget).data('album_id');
+                var albumName = $(event.relatedTarget).data('album_name');
 
-                $('#userNumber').text('( id ' + userId + ' - ' + userFirst + ' ' + userLast + ' )');
-                $('#delForm').attr('action', '/admin/users/' + userId);
+                $('#albumName').text('( ' + albumName + ' )');
+                $('#delForm').attr('action', '/admin/albums/' + albumId);
             })
         });
     </script>
