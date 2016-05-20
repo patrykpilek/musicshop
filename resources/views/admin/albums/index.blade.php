@@ -10,7 +10,7 @@
                 <h3><a href="/admin/users">Albums</a><small> &raquo; List</small></h3>
             </div>
             <div class="col-md-6 text-right">
-                <a href="/admin/users/create" class="btn btn-success btn-md">
+                <a href="/admin/albums/create" class="btn btn-success btn-md">
                     <i class="fa fa-plus-circle"></i> Add New Album
                 </a>
             </div>
@@ -21,25 +21,25 @@
             <div class="col-sm-12">
                 <table id="users-table" class="table table-striped table-bordered">
                     <thead>
-                    <tr>
-                        <th>Album Name</th>
-                        <th>Artist Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Format</th>
-                        <th>Category</th>
-                        <th data-sortable="true">Actions</th>
-                    </tr>
+                        <tr>
+                            <th>Album Name</th>
+                            <th>Artist Name</th>
+                            <th class="hidden-sm col-md-5">Description</th>
+                            <th class="hidden-md">Price</th>
+                            <th class="hidden-md">Format</th>
+                            <th class="hidden-md">Category</th>
+                            <th data-sortable="true">Actions</th>
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach ($albums as $album)
                         <tr>
                             <td>{{ $album->album_name }}</td>
                             <td>{{ $album->artist_name }}</td>
-                            <td>{{ $album->description }}</td>
-                            <td>{{ $album->price }}</td>
-                            <td>{{ $album->format }}</td>
-                            <td>{{ $album->category }}</td>
+                            <td class="hidden-sm">{{ $album->description }}</td>
+                            <td class="hidden-md">{{ $album->price }}</td>
+                            <td class="hidden-md">{{ $album->format }}</td>
+                            <td class="hidden-md">{{ $album->category }}</td>
                             <td>
                                 <a href="/admin/albums/{{ $album->id }}"
                                    class="btn btn-info btn-xs">
@@ -100,9 +100,7 @@
 @section('scripts')
     <script>
         $(function() {
-            $("#users-table").DataTable({
-
-            });
+            $("#users-table").DataTable();
 
             $('#confirmDelete').on('show.bs.modal', function (event) {
                 var userId = $(event.relatedTarget).data('user_id');

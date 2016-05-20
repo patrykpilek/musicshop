@@ -12,9 +12,11 @@ use Musicshop\Artist;
 use Illuminate\Http\Response;
 use Musicshop\Http\Requests;
 use Musicshop\Http\Controllers\Controller;
+use Musicshop\Http\Requests\AdminNewAlbumRequest;
 use Musicshop\Http\Requests\AlbumDescriptionUpdateAdminRequest;
 use Musicshop\Http\Requests\AlbumImageRequest;
 use Musicshop\Http\Requests\AlbumUpdateAdminRequest;
+use Musicshop\Track;
 
 class AlbumsController extends Controller
 {
@@ -37,14 +39,114 @@ class AlbumsController extends Controller
         return view('admin.albums.index', compact('albums'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
-        //
+        return view('admin.albums.create');
     }
 
-    public function store()
+    /**
+     * @param AdminNewAlbumRequest $request
+     * @return mixed
+     */
+    public function store(AdminNewAlbumRequest $request)
     {
-        //
+        $album = new Album();
+        $artist = new Artist();
+
+        $artistName = $request->get('artist');
+        $checkArtist = DB::table('artists')
+            ->where('artist_name', '=', $artistName)
+            ->first();
+
+        if($checkArtist->artist_name == $artistName){
+            $album->artist_id = $checkArtist->id;
+            $album->album_name = $request->get('album');
+            $album->description = $request->get('description');
+            $album->price = $request->get('price');
+            $album->format = $request->get('format');
+            $album->category = $request->get('category');
+            $album->save();
+
+            $lastAlbumId = $album->id;
+            $album_image = Album::findOrFail($lastAlbumId);
+
+            if($request->hasFile('photo')){
+                $file = $request->file('photo');
+                $fileName = $lastAlbumId.'-album-image.jpg';
+                if($file){
+                    Storage::disk('album')->put($fileName, File::get($file));
+                }
+
+                $album_image->update([
+                    'image' => $lastAlbumId.'-album-image.jpg',
+                ]);
+            }
+
+            $tracks = $request->get('track_listing');
+            $tracksList = array_filter($tracks);
+            $data = [];
+
+            foreach($tracksList as $item) {
+                $data[] = [
+                    'artist_id' => $checkArtist->id,
+                    'album_id' => $album->id,
+                    'track_name' => $item,
+                    'created_at' => date( 'Y-m-d H:i:s'),
+                    'updated_at' => date( 'Y-m-d H:i:s'),
+                ];
+            }
+
+            Track::insert($data);
+
+            return back()->withSuccess("Album has been added.");
+        } else {
+            $artist->artist_name = $request->get('artist');
+            $artist->save();
+
+            $album->artist_id = $artist->id;
+            $album->album_name = $request->get('album');
+            $album->description = $request->get('description');
+            $album->price = $request->get('price');
+            $album->format = $request->get('format');
+            $album->category = $request->get('category');
+            $album->save();
+
+            $lastAlbumId = $album->id;
+            $album_image = Album::findOrFail($lastAlbumId);
+
+            if($request->hasFile('photo')){
+                $file = $request->file('photo');
+                $fileName = $lastAlbumId.'-album-image.jpg';
+                if($file){
+                    Storage::disk('album')->put($fileName, File::get($file));
+                }
+
+                $album_image->update([
+                    'image' => $lastAlbumId.'-album-image.jpg',
+                ]);
+            }
+
+            $tracks = $request->get('track_listing');
+            $tracksList = array_filter($tracks);
+            $data = [];
+
+            foreach($tracksList as $item) {
+                $data[] = [
+                    'artist_id' => $artist->id,
+                    'album_id' => $album->id,
+                    'track_name' => $item,
+                    'created_at' => date( 'Y-m-d H:i:s'),
+                    'updated_at' => date( 'Y-m-d H:i:s'),
+                ];
+            }
+
+            Track::insert($data);
+
+            return back()->withSuccess("Album has been added.");
+        }
     }
 
     /**
@@ -72,6 +174,10 @@ class AlbumsController extends Controller
         return view('admin.albums.show', compact('album', 'artist', 'tracks'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
         $album = Album::findOrFail($id);
@@ -115,7 +221,12 @@ class AlbumsController extends Controller
 
         return redirect("/admin/albums/{$album->id}/edit")->withSuccess("Your changes has been saved.");
     }
-    
+
+    /**
+     * @param AlbumDescriptionUpdateAdminRequest $request
+     * @param $id
+     * @return mixed
+     */
     public function updateDescription(AlbumDescriptionUpdateAdminRequest $request, $id)
     {
         $album = Album::findOrFail($id);
