@@ -21,7 +21,6 @@
 
     @include('layouts.partials.navigation')
     @yield('content')
-    {{--@include('layouts.partials.footer')--}}
 
     <script src="{{ asset('js/musicshop.js') }}"></script>
 
