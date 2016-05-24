@@ -74,10 +74,12 @@
                             <i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Clear Basket
                         </a>
                         <br>
-                        <p class="text-center">or</p>
-                        <a class="btn btn-primary btn-lg btn-block" type="button" href="">
-                            Pay&nbsp;<i class="fa fa-cc-visa" aria-hidden="true"></i>
-                        </a>
+                        @if ($basket->count())
+                            <p class="text-center">or</p>
+                            <a class="btn btn-primary btn-lg btn-block" type="button" href="{{ url('/order') }}">
+                                <i class="fa fa-cc-visa" aria-hidden="true"></i>&nbsp;Checkout
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>

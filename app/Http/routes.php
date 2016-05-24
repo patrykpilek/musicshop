@@ -17,6 +17,8 @@ Route::group(['middleware' => 'web', 'admin'], function () {
 
     Route::post('/basket', 'BasketController@basket');
     Route::get('/basket', 'BasketController@basket');
+    Route::get('/order', 'OrderController@index');
+    Route::get('/order/save', 'OrderController@saveOrder');
 
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');

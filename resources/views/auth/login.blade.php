@@ -6,6 +6,16 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="login">
                 <div class="panel panel-default">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                             {!! csrf_field() !!}

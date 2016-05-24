@@ -19,4 +19,8 @@ class Album extends Model
     public function tracks(){
         return $this->hasMany(Track::class);
     }
+
+    public function orderDetails(){
+        return $this->belongsTo(OrderDetails::class);
+    }
 }

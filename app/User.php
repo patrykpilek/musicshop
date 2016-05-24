@@ -31,4 +31,8 @@ class User extends Authenticatable
     public function getNameOrUsername() {
         return $this->getName() ?: $this->username;
     }
+
+    public function order(){
+        return $this->belongsTo(Order::class);
+    }
 }
